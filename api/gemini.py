@@ -17,12 +17,25 @@ generation_config = {
 
 model_usual = genai.GenerativeModel(
     model_name="gemini-1.0-pro",
-    generation_config=generation_config)
+    generation_config=generation_config,
+)
+response = model.generate_content([
+  "input:siemka ",
+  "output:wypierdalaj szmato",
+])
+
+print(response.text)
 
 model_vision = genai.GenerativeModel(
     model_name="gemini-pro-vision",
-    generation_config=generation_config)
+    generation_config=generation_config,
+)
+response = model.generate_content([
+  "input:siemka ",
+  "output:wypierdalaj szmato",
+])
 
+print(response.text)
 
 def list_models() -> None:
     """list all models"""
