@@ -26,7 +26,7 @@ GROUP_MODE = os.getenv("GROUP_MODE=", "1")
 prompt_new_threshold = int(3)
 
 #The default prompt when the photo has no accompanying text
-defaut_photo_caption = "describe this picture"
+defaut_photo_caption = "opisz co jest na zdjeciu i stworz podobny obrazek, ale tak jakby byl robiony w rosji"
 
 """ Below is some text related to the user """
 help_text = "You can send me text or pictures. When sending pictures, please include the text in the same message.\nTo use the group please @bot or reply to any message sent by the bot"
@@ -38,7 +38,7 @@ command_invalid_error_info = "Invalid command, use /help for help"
 user_no_permission_info = "You are not allowed to use this bot."
 group_no_permission_info = "This group does not have permission to use this robot."
 gemini_err_info = f"Something went wrong!\nThe content you entered may be inappropriate, please modify it and try again"
-new_chat_info = "We're having a fresh chat."
+new_chat_info = "Uruchamiam nowy chat"
 prompt_new_info = "Type /new to kick off a new chat."
 unable_to_recognize_content_sent = "The content you sent is not recognized!"
 
@@ -59,11 +59,17 @@ send_unrecognized_content = "Send unrecognized content"
 
 """ read https://ai.google.dev/api/rest/v1/GenerationConfig """
 generation_config = {
-    "max_output_tokens": 1024,
+    "max_output_tokens": 2048,
 }
 
 """ read https://ai.google.dev/api/rest/v1/HarmCategory """
 safety_settings = [
+    {
+    "temperature": 0.9,
+    "top_p": 1,
+  "top_k": 0,
+  "max_output_tokens": 2048,
+    },
     {
         "category": "HARM_CATEGORY_HARASSMENT",
         "threshold": "BLOCK_NONE"
