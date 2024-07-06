@@ -7,35 +7,15 @@ from .config import GOOGLE_API_KEY, generation_config, safety_settings, gemini_e
 
 genai.configure(api_key=GOOGLE_API_KEY[0])
 
-generation_config = {
-  "temperature": 0.9,
-  "top_p": 1,
-  "top_k": 0,
-  "max_output_tokens": 2048,
-  "response_mime_type": "text/plain",
-}
-
 model_usual = genai.GenerativeModel(
     model_name="gemini-1.0-pro",
     generation_config=generation_config,
 )
-response = model.generate_content([
-  "input:siemka ",
-  "output:wypierdalaj szmato",
-])
-
-print(response.text)
 
 model_vision = genai.GenerativeModel(
     model_name="gemini-pro-vision",
     generation_config=generation_config,
 )
-response = model.generate_content([
-  "input:siemka ",
-  "output:wypierdalaj szmato",
-])
-
-print(response.text)
 
 def list_models() -> None:
     """list all models"""
