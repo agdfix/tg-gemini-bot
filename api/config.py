@@ -1,5 +1,7 @@
 ﻿import os
 from re import split
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
+
 
 """ Required """
 
@@ -59,31 +61,20 @@ send_unrecognized_content = "Send unrecognized content"
 
 """ read https://ai.google.dev/api/rest/v1/GenerationConfig """
 generation_config = {
-    "max_output_tokens": 2048,
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 2048,
+  "response_mime_type": "text/plain",
 }
 
 """ read https://ai.google.dev/api/rest/v1/HarmCategory """
-safety_settings = [
-    {
-    "temperature": 0.9,
-    "top_p": 1,
-  "top_k": 0,
-  "max_output_tokens": 2048,
-    },
-    {
-        "category": "HARM_CATEGORY_HARASSMENT",
-        "threshold": "BLOCK_NONE"
-    },
-    {
-        "category": "HARM_CATEGORY_HATE_SPEECH",
-        "threshold": "BLOCK_NONE"
-    },
-    {
-        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        "threshold": "BLOCK_NONE"
-    },
-    {
-        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "threshold": "BLOCK_NONE"
-    },
-]
+model = genai.GenerativeModel(model_name='gemini-1.5-pro')
+response = model.generate_content(
+    safety_settings={
+        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+    }
+)
