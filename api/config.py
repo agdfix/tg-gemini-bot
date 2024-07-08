@@ -1,7 +1,7 @@
 ﻿import os
 from re import split
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
-
+import google.generativeai as genai
 
 """ Required """
 
