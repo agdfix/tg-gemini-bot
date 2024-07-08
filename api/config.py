@@ -71,7 +71,6 @@ generation_config = {
 """ read https://ai.google.dev/api/rest/v1/HarmCategory """
 model = genai.GenerativeModel(model_name='gemini-1.5-pro')
 response = model.generate_content(
-  ['Do these look store-bought or homemade?', img],
     safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
