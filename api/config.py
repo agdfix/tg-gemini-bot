@@ -67,13 +67,7 @@ generation_config = {
   "max_output_tokens": 2048,
   "response_mime_type": "text/plain",
 }
-
-""" read https://ai.google.dev/api/rest/v1/HarmCategory """
-model = genai.GenerativeModel(model_name='gemini-1.5-pro')
-response = model.generate_content([
-  "input:siemka ",
-  "output:elo melo cwelu ",
-],
+,
     safety_settings={
         HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
